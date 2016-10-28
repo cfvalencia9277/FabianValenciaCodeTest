@@ -17,6 +17,11 @@
         </activity>
         <activity android:name=".AddContactActivity">
         </activity>
+        <provider
+            android:authorities="com.testcode.fabianvalenciacodetest"
+            android:name="com.testcode.fabianvalenciacodetest.data.generated.ContactProvider"
+            android:exported="false"
+            />
     </application>
 
 </manifest>
