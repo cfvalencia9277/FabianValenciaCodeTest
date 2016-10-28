@@ -1,7 +1,11 @@
 package com.testcode.fabianvalenciacodetest;
 
+import android.content.AsyncQueryHandler;
 import android.content.ContentProviderOperation;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
@@ -14,13 +18,14 @@ import android.widget.Toast;
 import com.facebook.stetho.Stetho;
 import com.testcode.fabianvalenciacodetest.data.ContactColumns;
 import com.testcode.fabianvalenciacodetest.data.ContactProvider;
+import com.testcode.fabianvalenciacodetest.models.Contacts;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
+
 
 /**
  * Created by Fabian on 27/10/2016.
@@ -39,6 +44,9 @@ public class AddContactActivity extends AppCompatActivity {
     EditText birthDateEt;
     @BindView(R.id.zip_code_et)
     EditText zipCodeEt;
+    Contacts contact;
+    AsyncQueryHandler queryHandler;
+    boolean isEdit;
 
 
     @Override
@@ -47,6 +55,20 @@ public class AddContactActivity extends AppCompatActivity {
         setContentView(R.layout.addcontanactivity);
         ButterKnife.bind(this);
         Stetho.initializeWithDefaults(this);
+        Intent intent = getIntent();
+        if(intent.hasExtra("contact")){
+            contact = intent.getParcelableExtra("contact");
+            setEditView(contact);
+            isEdit=true;
+        }
+        else {isEdit=false;}
+        queryHandler = new AsyncQueryHandler(getContentResolver()) {
+            @Override
+            protected void onUpdateComplete(int token, Object cookie, int result) {
+                super.onUpdateComplete(token, cookie, result);
+                cancel();
+            }
+        };
     }
     @OnClick(R.id.cancel_btn)
      void cancel(){
@@ -55,8 +77,19 @@ public class AddContactActivity extends AppCompatActivity {
     }
     @OnClick(R.id.save_btn)
      void save(){
-        Log.e("CLICKED","SAVE");
-        savecontac();
+        if(isEdit){
+            String[] mArray = {contact.getFirst_name()};
+            ContentValues cv = new ContentValues();
+            cv.put(ContactColumns.FIRST_NAME,firstNameEt.getText().toString());
+            cv.put(ContactColumns.LAST_NAME,lastNameEt.getText().toString());
+            cv.put(ContactColumns.PHONE_NUMER,phoneNumEt.getText().toString());
+            cv.put(ContactColumns.BIRTH_DATE,birthDateEt.getText().toString());
+            cv.put(ContactColumns.ZIP_CODE,zipCodeEt.getText().toString());
+            queryHandler.startUpdate(1,null,ContactProvider.Contacts.CONTENT_URI,cv,ContactColumns.FIRST_NAME+"=?",mArray);
+        }else {
+            Log.e("CLICKED","SAVE");
+            savecontac();
+        }
     }
     public void clearviews(){
         firstNameEt.setText("");
@@ -122,5 +155,12 @@ public class AddContactActivity extends AppCompatActivity {
         catch (Exception e){
             Log.e("EXCEPTION", "GENERAL");
         }
+    }
+    public void setEditView(Contacts contact){
+        firstNameEt.setText(contact.getFirst_name());
+        lastNameEt.setText(contact.getLast_name());
+        phoneNumEt.setText(contact.getPhone_number());
+        birthDateEt.setText(contact.getBirth_date());
+        zipCodeEt.setText(contact.getZip_code());
     }
 }

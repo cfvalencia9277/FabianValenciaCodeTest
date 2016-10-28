@@ -26,12 +26,10 @@ import atownsend.swipeopenhelper.BaseSwipeOpenViewHolder;
 public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHolder> {
 
     private static final String TAG = RVAdapter.class.getSimpleName();
-    private final Context mContext;
     private final RVAdapter.ButtonCallbacks callbacks;
 
-    public RVAdapter(Context context, RVAdapter.ButtonCallbacks callbacks) {
+    public RVAdapter(RVAdapter.ButtonCallbacks callbacks) {
         super(null);
-        this.mContext =  context;
         this.callbacks = callbacks;
     }
     public  interface ButtonCallbacks {
@@ -61,7 +59,7 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHold
         holder.phonenum.setText(pn);
         holder.birthdate.setText(bd);
         holder.zipcode.setText(zc);
-        final Contacts contact = new Contacts().Contact(1,fn,ln,pn,bd,zc);
+        final Contacts contact = new Contacts(1,fn,ln,pn,bd,zc);
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
