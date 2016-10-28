@@ -13,14 +13,11 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 @ContentProvider(authority = ContactProvider.AUTHORITY,database = ContactsDatabase.class)
 public class ContactProvider {
 
-
     public static final String AUTHORITY = "com.testcode.fabianvalenciacodetest";
-
     static final Uri BASE_CONTENT_URI = Uri.parse("content://"+AUTHORITY);
 
     interface Path{
         String CONTACTS = "Contacts";
-
     }
 
     private static Uri buildUri(String ... paths){

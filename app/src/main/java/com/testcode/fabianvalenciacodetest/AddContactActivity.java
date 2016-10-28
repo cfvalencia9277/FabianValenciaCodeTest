@@ -33,7 +33,6 @@ import butterknife.OnClick;
 
 public class AddContactActivity extends AppCompatActivity {
 
-
     @BindView(R.id.first_name_et)
     EditText firstNameEt;
     @BindView(R.id.last_name_et)
@@ -47,7 +46,6 @@ public class AddContactActivity extends AppCompatActivity {
     Contacts contact;
     AsyncQueryHandler queryHandler;
     boolean isEdit;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

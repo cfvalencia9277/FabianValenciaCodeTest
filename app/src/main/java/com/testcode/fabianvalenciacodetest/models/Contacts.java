@@ -95,7 +95,6 @@ public class Contacts implements Parcelable {
         this.zip_code=zip_code;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
