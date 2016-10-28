@@ -83,7 +83,7 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHold
         public TextView birthdate;
         public TextView zipcode;
         public ImageView deleteButton;
-        public TextView editButton;
+        public ImageView editButton;
 
         public TestViewHolder(final View view) {
             super(view);
@@ -94,7 +94,7 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHold
             birthdate = (TextView) view.findViewById(R.id.birthday_tv);
             zipcode = (TextView) view.findViewById(R.id.zip_code_tv);
             deleteButton = (ImageView) view.findViewById(R.id.delete_button);
-            editButton = (TextView) view.findViewById(R.id.edit_button);
+            editButton = (ImageView) view.findViewById(R.id.edit_button);
         }
         @NonNull
         @Override
@@ -104,21 +104,21 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHold
 
         @Override
         public float getEndHiddenViewSize() {
-            return editButton.getMeasuredWidth();
+            return editButton.getMeasuredWidth()+30f;
         }
 
         @Override
         public float getStartHiddenViewSize() {
-            return deleteButton.getMeasuredWidth();
+            return deleteButton.getMeasuredWidth()+30f;
         }
 
         @Override
         public void notifyStartOpen() {
-            itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(),R.color.red));
+            itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(),R.color.white));
         }
         @Override
         public void notifyEndOpen() {
-            itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(),R.color.colorPrimaryDark));
+            itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(),R.color.white));
         }
     }
 }

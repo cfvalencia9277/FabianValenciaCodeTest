@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
 
     <ImageView
+        android:layout_centerInParent="true"
+        android:layout_alignParentLeft="true"
         android:layout_margin="5dp"
         android:id="@+id/delete_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:padding="16dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="10dp"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:background="@drawable/trash"
+        />
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:id="@+id/edit_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_vertical"
         android:gravity="center"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
-        android:background="@drawable/delete"
+        android:src="@drawable/editsimple"
         />
-
-    <TextView
-        android:layout_margin="5dp"
-        android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textColor="@android:color/white"
-        android:layout_gravity="end"
-        android:gravity="center"
-        android:background="@color/colorPrimaryDark"
-        android:text="Edit"/>
 
     <LinearLayout
         android:id="@+id/content_view"
@@ -77,13 +81,12 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-
         </RelativeLayout>
-
 
         <TextView
             android:padding="2dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
             android:id="@+id/last_name_tv"
             android:text="sample text"
             android:textAllCaps="true"
@@ -177,4 +180,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>
