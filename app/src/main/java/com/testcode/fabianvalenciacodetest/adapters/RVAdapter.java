@@ -23,7 +23,7 @@ import atownsend.swipeopenhelper.BaseSwipeOpenViewHolder;
  * Created by Fabian on 10/27/16.
  */
 
-public class RVAdapter  extends RecyclerViewCursorAdapter<RecyclerView.ViewHolder> {
+public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHolder> {
 
     private static final String TAG = RVAdapter.class.getSimpleName();
     private final Context mContext;
@@ -38,12 +38,14 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RecyclerView.ViewHolde
         void removePosition(Contacts contact);
         void editPosition(Contacts contact);
     }
-    @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new RVAdapter.TestViewHolder(
-                    LayoutInflater.from(mContext).inflate(R.layout.viewholderview, parent, false), callbacks);
-    }
     @Override
-    protected void onBindViewHolder(RecyclerView.ViewHolder holder, Cursor cursor) {
+    public TestViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholderview,parent,false);
+            return new RVAdapter.TestViewHolder(view);
+    }
+
+    @Override
+    protected void onBindViewHolder(TestViewHolder holder, Cursor cursor) {
         int fnIndex = cursor.getColumnIndex(ContactColumns.FIRST_NAME);
         String fn = cursor.getString(fnIndex);
         int lnIndex = cursor.getColumnIndex(ContactColumns.LAST_NAME);
@@ -54,26 +56,26 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RecyclerView.ViewHolde
         String bd = cursor.getString(bdIndex);
         int zcIndex = cursor.getColumnIndex(ContactColumns.ZIP_CODE);
         String zc = cursor.getString(zcIndex);
-        ((TestViewHolder) holder).textView.setText(fn);
-        ((TestViewHolder) holder).lastname.setText(ln);
-        ((TestViewHolder) holder).phonenum.setText(pn);
-        ((TestViewHolder) holder).birthdate.setText(bd);
-        ((TestViewHolder) holder).zipcode.setText(zc);
+        holder.textView.setText(fn);
+        holder.lastname.setText(ln);
+        holder.phonenum.setText(pn);
+        holder.birthdate.setText(bd);
+        holder.zipcode.setText(zc);
         final Contacts contact = new Contacts().Contact(1,fn,ln,pn,bd,zc);
-        ((TestViewHolder) holder).deleteButton.setOnClickListener(new View.OnClickListener() {
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callbacks.removePosition(contact);
             }
         });
-        ((TestViewHolder) holder).editButton.setOnClickListener(new View.OnClickListener() {
+        holder.editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callbacks.editPosition(contact);
             }
         });
     }
-    static class TestViewHolder extends BaseSwipeOpenViewHolder {
+    public static class TestViewHolder extends BaseSwipeOpenViewHolder {
 
         public LinearLayout contentView;
         public TextView textView;
@@ -84,7 +86,7 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RecyclerView.ViewHolde
         public TextView deleteButton;
         public TextView editButton;
 
-        public TestViewHolder(final View view, final ButtonCallbacks callbacks) {
+        public TestViewHolder(final View view) {
             super(view);
             contentView = (LinearLayout) view.findViewById(R.id.content_view);
             textView = (TextView) view.findViewById(R.id.display_text);
@@ -96,22 +98,27 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RecyclerView.ViewHolde
             editButton = (TextView) view.findViewById(R.id.edit_button);
         }
         @NonNull
-        @Override public View getSwipeView() {
+        @Override
+        public View getSwipeView() {
             return contentView;
         }
 
-        @Override public float getEndHiddenViewSize() {
+        @Override
+        public float getEndHiddenViewSize() {
             return editButton.getMeasuredWidth();
         }
 
-        @Override public float getStartHiddenViewSize() {
+        @Override
+        public float getStartHiddenViewSize() {
             return deleteButton.getMeasuredWidth();
         }
 
-        @Override public void notifyStartOpen() {
+        @Override
+        public void notifyStartOpen() {
             itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(),R.color.red));
         }
-        @Override public void notifyEndOpen() {
+        @Override
+        public void notifyEndOpen() {
             itemView.setBackgroundColor(ContextCompat.getColor(itemView.getContext(),R.color.colorPrimaryDark));
         }
     }

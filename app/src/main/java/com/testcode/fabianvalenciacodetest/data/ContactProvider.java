@@ -2,6 +2,7 @@ package com.testcode.fabianvalenciacodetest.data;
 
 import android.net.Uri;
 
+import net.simonvt.schematic.annotation.ContentProvider;
 import net.simonvt.schematic.annotation.ContentUri;
 import net.simonvt.schematic.annotation.InexactContentUri;
 import net.simonvt.schematic.annotation.TableEndpoint;
@@ -9,7 +10,7 @@ import net.simonvt.schematic.annotation.TableEndpoint;
 /**
  * Created by Fabian on 10/27/16.
  */
-
+@ContentProvider(authority = ContactProvider.AUTHORITY,database = ContactsDatabase.class)
 public class ContactProvider {
 
 
@@ -34,7 +35,7 @@ public class ContactProvider {
         @ContentUri(
                 path = Path.CONTACTS,
                 type = "vnd.android.cursor,dir/Contacts",
-                defaultSort = ContactColumns.FIRST_NAME + "ASC")
+                defaultSort = ContactColumns.FIRST_NAME)
         public static final Uri CONTENT_URI = buildUri(Path.CONTACTS);
     }
     @InexactContentUri(
