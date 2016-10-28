@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/delete_button"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:padding="16dp"
         android:textColor="@android:color/white"
         android:layout_gravity="start"
@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/edit_button"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="match_parent"
         android:padding="16dp"
         android:textColor="@android:color/white"
         android:layout_gravity="end"
@@ -29,7 +29,7 @@
     <LinearLayout
         android:id="@+id/content_view"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -38,6 +38,34 @@
 
         <TextView
             android:id="@+id/display_text"
+            android:text="sample text"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/last_name_tv"
+            android:text="sample text"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/phone_tv"
+            android:text="sample text"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/birthday_tv"
+            android:text="sample text"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/zip_code_tv"
             android:text="sample text"
             android:background="?attr/selectableItemBackground"
             android:gravity="center_vertical"
