@@ -26,17 +26,19 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements SheetLayout.OnFabAnimationEndListener, LoaderManager.LoaderCallbacks<Cursor>,RVAdapter.ButtonCallbacks {
 
-    private SwipeOpenItemTouchHelper helper;
     @BindView(R.id.bottom_sheet)
     SheetLayout mSheetLayout;
     @BindView(R.id.fab)
     ImageView mFab;
+
     RVAdapter rvaAdapter;
     RecyclerView recyclerView;
     AsyncQueryHandler queryHandler;
     Contacts contact;
 
     private static final int CONTACT_LOADER = 101;
+    private SwipeOpenItemTouchHelper helper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
             }
         };
     }
+
     public Contacts createContactModel(Cursor cursor){
         int fnIndex = cursor.getColumnIndexOrThrow("First_Name");
         int lnIndex = cursor.getColumnIndexOrThrow("Last_Name");
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivityForResult(intent, 101);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -128,33 +132,30 @@ public class MainActivity extends AppCompatActivity implements SheetLayout.OnFab
         rvaAdapter.swapCursor(null);
     }
 
-
     @Override
     public void removePosition(Contacts contact) {
         // get contact delete it and reload loader
-        Log.e("DELETE",contact.getFirst_name());
         String[] mArray = {contact.getFirst_name()};
         try {
             queryHandler.startDelete(2,null,ContactProvider.Contacts.CONTENT_URI,
                     ContactColumns.FIRST_NAME+"=?",mArray);
         }catch (SQLiteConstraintException e){
-            Log.e("EXIST", "EXIST");
+
         }
         getSupportLoaderManager().restartLoader(CONTACT_LOADER,null,this);
     }
 
     @Override
     public void editPosition(Contacts contact) {
-        // update contact with new data and reload loader
-        Log.e("Update",contact.getFirst_name());
         String[] mArray = {contact.getFirst_name()};
         try {
             queryHandler.startQuery(1,null,ContactProvider.Contacts.CONTENT_URI,null,
                     ContactColumns.FIRST_NAME+"=?",mArray,null);
         }catch (SQLiteConstraintException e){
-            Log.e("EXIST", "EXIST");
+
         }
     }
+
     public void editContactAct(Contacts contact){
         Intent intent = new Intent(this, AddContactActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

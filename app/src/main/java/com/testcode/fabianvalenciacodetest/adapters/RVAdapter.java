@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -81,7 +82,7 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHold
         public TextView phonenum;
         public TextView birthdate;
         public TextView zipcode;
-        public TextView deleteButton;
+        public ImageView deleteButton;
         public TextView editButton;
 
         public TestViewHolder(final View view) {
@@ -92,7 +93,7 @@ public class RVAdapter  extends RecyclerViewCursorAdapter<RVAdapter.TestViewHold
             phonenum = (TextView) view.findViewById(R.id.phone_tv);
             birthdate = (TextView) view.findViewById(R.id.birthday_tv);
             zipcode = (TextView) view.findViewById(R.id.zip_code_tv);
-            deleteButton = (TextView) view.findViewById(R.id.delete_button);
+            deleteButton = (ImageView) view.findViewById(R.id.delete_button);
             editButton = (TextView) view.findViewById(R.id.edit_button);
         }
         @NonNull

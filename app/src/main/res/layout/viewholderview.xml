@@ -4,18 +4,21 @@
     android:layout_height="wrap_content"
     >
 
-    <TextView
+    <ImageView
+        android:layout_margin="5dp"
         android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:padding="16dp"
-        android:textColor="@android:color/white"
-        android:layout_gravity="start"
+        android:layout_gravity="center_vertical"
         android:gravity="center"
-        android:background="@color/red"
-        android:text="Delete"/>
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:background="@drawable/delete"
+        />
 
     <TextView
+        android:layout_margin="5dp"
         android:id="@+id/edit_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -37,42 +40,141 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/display_text"
-            android:text="sample text"
-            android:background="?attr/selectableItemBackground"
+            android:textColor="@android:color/white"
+            android:text="CONTACT:"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:padding="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:id="@+id/iconimg"
+                android:src="@drawable/profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_toRightOf="@+id/iconimg"
+                android:layout_toEndOf="@+id/iconimg"
+                android:id="@+id/display_text"
+                android:text="sample text"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
         <TextView
+            android:padding="2dp"
             android:id="@+id/last_name_tv"
             android:text="sample text"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:background="?attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/phone_tv"
-            android:text="sample text"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
+        <RelativeLayout
+            android:padding="2dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/birthday_tv"
-            android:text="sample text"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:id="@+id/phoneimg"
+                android:src="@drawable/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/phone_tv"
+                android:text="sample text"
+                android:layout_toRightOf="@+id/phoneimg"
+                android:layout_toEndOf="@+id/phoneimg"
+                android:textSize="18sp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:padding="2dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/zip_code_tv"
-            android:text="sample text"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:id="@+id/bdayimg"
+                android:src="@drawable/calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/birthday_tv"
+                android:layout_toRightOf="@+id/bdayimg"
+                android:layout_toEndOf="@+id/bdayimg"
+                android:text="sample text"
+                android:textSize="18sp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:padding="2dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:id="@+id/zipimg"
+                android:src="@drawable/globe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:padding="2dp"
+                android:layout_toRightOf="@+id/zipimg"
+                android:layout_toEndOf="@+id/zipimg"
+                android:id="@+id/zip_code_tv"
+                android:text="sample text"
+                android:textSize="18sp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
     </LinearLayout>
-
 
 </FrameLayout>
